@@ -1,3 +1,4 @@
+from tokens import Token, TokenType
 
 
 class Lexer(object):
@@ -25,4 +26,25 @@ class Lexer(object):
                 yield self.generate_number()
 
     def generate_number(self):
-        pass
+        number_str = self.current_char
+        decimal_point_count = 0
+
+        self.move_to_next()
+
+        while self.current_char is not None and (self.current_char == '.' or self.current_char in self.DIGITS):
+            if self.current_char == '.':
+                decimal_point_count += 1
+
+                if decimal_point_count > 1:
+                    break
+
+            number_str += self.current_char
+            self.move_to_next()
+
+        if number_str.startswith('.'):
+            number_str = f'0{number_str}'
+
+        if number_str.endswith('.'):
+            number_str += 0
+
+        return Token(TokenType.NUMBER, float(number_str))
