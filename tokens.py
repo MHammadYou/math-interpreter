@@ -16,3 +16,6 @@ class TokenType(Enum):
 class Token(object):
     token_type: TokenType
     value: any = None
+
+    def __repr__(self):
+        return f'{self.token_type}: {self.value if self.value else ""}'

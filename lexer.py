@@ -25,6 +25,33 @@ class Lexer(object):
             elif self.current_char == '.' or self.current_char in self.DIGITS:
                 yield self.generate_number()
 
+            elif self.current_char == '+':
+                self.move_to_next()
+                yield Token(TokenType.PLUS)
+
+            elif self.current_char == '-':
+                self.move_to_next()
+                yield Token(TokenType.MINUS)
+
+            elif self.current_char == '*':
+                self.move_to_next()
+                yield Token(TokenType.MULTIPLY)
+
+            elif self.current_char == '/':
+                self.move_to_next()
+                yield Token(TokenType.DIVIDE)
+
+            elif self.current_char == '(':
+                self.move_to_next()
+                yield Token(TokenType.LPAREN)
+
+            elif self.current_char == ')':
+                self.move_to_next()
+                yield Token(TokenType.RPAREN)
+
+            else:
+                raise Exception(f"Illegal Character '{self.current_char}'")
+
     def generate_number(self):
         number_str = self.current_char
         decimal_point_count = 0
