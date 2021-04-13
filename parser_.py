@@ -25,4 +25,9 @@ class Parser:
         return result
 
     def expr(self):
-        pass
+        result = self.term()
+
+        while self.current_token is not None and self.current_token.type in (TokenType.PLUS, TokenType.MINUS):
+            if self.current_token.type == TokenType.PLUS:
+                result = AddNode(result, self.term())
+            
