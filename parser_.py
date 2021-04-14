@@ -28,6 +28,13 @@ class Parser:
         result = self.term()
 
         while self.current_token is not None and self.current_token.type in (TokenType.PLUS, TokenType.MINUS):
+
             if self.current_token.type == TokenType.PLUS:
+                self.move_to_next()
                 result = AddNode(result, self.term())
-            
+
+            elif self.current_token.type == TokenType.MINUS:
+                self.move_to_next()
+                result = SubtractNode(result, self.term())
+                
+        return result
