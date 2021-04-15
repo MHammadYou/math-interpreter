@@ -1,4 +1,5 @@
 from lexer import Lexer
+from parser_ import Parser
 
 
 while True:
@@ -6,4 +7,11 @@ while True:
 
     lexer = Lexer(text)
     tokens = lexer.generate_tokens()
-    print(list(tokens))
+    print(next(tokens))
+    print(next(tokens))
+    print(next(tokens))
+    #
+    # parser = Parser(tokens)
+    #
+    # tree = parser.parse()
+    # print(tree)
