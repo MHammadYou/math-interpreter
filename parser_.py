@@ -42,10 +42,7 @@ class Parser:
     def term(self):
         result = self.factor()
 
-        print(self.current_token.token_type)
         while self.current_token is not None and self.current_token.token_type in (TokenType.MULTIPLY, TokenType.DIVIDE):
-
-
             if self.current_token.token_type == TokenType.MULTIPLY:
                 self.move_to_next()
                 result = MultiplyNode(result, self.factor())
@@ -54,7 +51,7 @@ class Parser:
                 self.move_to_next()
                 result = DivideNode(result, self.factor())
 
-            return result
+        return result
 
     def factor(self):
 
