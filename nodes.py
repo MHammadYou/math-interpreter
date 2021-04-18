@@ -43,3 +43,19 @@ class DivideNode:
 
     def __repr__(self):
         return f"({self.node_a} / {self.node_b})"
+
+
+@dataclass
+class PlusNode:
+    node: any
+
+    def __repr__(self):
+        return f"(+{self.node})"
+
+
+@dataclass
+class MinusNode:
+    node: any
+
+    def __repr__(self):
+        return f"(-{self.node})"
