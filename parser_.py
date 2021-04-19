@@ -1,5 +1,5 @@
 from tokens import TokenType
-from nodes import NumberNode, AddNode, SubtractNode, MultiplyNode, DivideNode
+from nodes import NumberNode, AddNode, SubtractNode, MultiplyNode, DivideNode, PlusNode, MinusNode
 
 
 class Parser:
@@ -57,8 +57,26 @@ class Parser:
 
         token = self.current_token
 
-        if token.token_type == TokenType.NUMBER:
+        if token.token_type == TokenType.LPAREN:
+            self.move_to_next()
+            result = self.expr()
+
+            if self.current_token.token_type != TokenType.RPAREN:
+                raise Exception("Invalid Syntax")
+
+            self.move_to_next()
+            return result
+
+        elif token.token_type == TokenType.NUMBER:
             self.move_to_next()
             return NumberNode(token.value)
+
+        elif token.token_type == TokenType.PLUS:
+            self.move_to_next()
+            return PlusNode(self.factor())
+
+        elif token.token_type == TokenType.MINUS:
+            self.move_to_next()
+            return MinusNode(self.factor())
 
         raise Exception("Invalid Syntax")
