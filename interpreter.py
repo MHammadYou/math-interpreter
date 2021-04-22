@@ -1,4 +1,3 @@
-from nodes import *
 from values import Number
 
 
@@ -8,3 +7,28 @@ class Interpreter(object):
         method = getattr(self, method_name)
 
         return method(node)
+
+    @staticmethod
+    def visit_NumberNode(node):
+        return Number(node.value)
+
+    def visit_AddNode(self, node):
+        return Number(self.visit(node.node_a).value + self.visit(node.node_b).value)
+
+    def visit_SubtractNode(self, node):
+        return Number(self.visit(node.node_a).value - self.visit(node.node_b).value)
+
+    def visit_MultiplyNode(self, node):
+        return Number(self.visit(node.node_a).value * self.visit(node.node_b).value)
+
+    def visit_DivideNode(self, node):
+        try:
+            return Number(self.visit(node.node_a).value / self.visit(node.node_b).value)
+        except Exception as e:
+            raise e
+
+    def visit_PlusNode(self, node):
+        return self.visit(node.node)
+
+    def visit_MinusNode(self, node):
+        return Number(-self.visit(node.node).value)
