@@ -8,8 +8,7 @@ class Interpreter(object):
 
         return method(node)
 
-    @staticmethod
-    def visit_NumberNode(node):
+    def visit_NumberNode(self, node):
         return Number(node.value)
 
     def visit_AddNode(self, node):
