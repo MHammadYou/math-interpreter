@@ -72,6 +72,6 @@ class Lexer(object):
             number_str = f'0{number_str}'
 
         if number_str.endswith('.'):
-            number_str += 0
+            number_str += str(0)
 
         return Token(TokenType.NUMBER, float(number_str))
