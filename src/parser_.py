@@ -1,5 +1,5 @@
 from tokens import TokenType
-from nodes import NumberNode, AddNode, SubtractNode, MultiplyNode, DivideNode, PlusNode, MinusNode
+from src.nodes import NumberNode, AddNode, SubtractNode, MultiplyNode, DivideNode, PlusNode, MinusNode
 
 
 class Parser:

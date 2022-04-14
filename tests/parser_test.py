@@ -1,7 +1,7 @@
 import unittest
-from tokens import Token, TokenType
-from parser_ import Parser
-from nodes import *
+from src.tokens import Token, TokenType
+from src.parser_ import Parser
+from src.nodes import *
 
 
 class TestParser(unittest.TestCase):

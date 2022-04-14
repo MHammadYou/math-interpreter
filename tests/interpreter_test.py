@@ -1,7 +1,7 @@
 import unittest
-from nodes import *
-from interpreter import Interpreter
-from values import Number
+from src.nodes import *
+from src.interpreter import Interpreter
+from src.values import Number
 
 
 class TestInterpreter(unittest.TestCase):
