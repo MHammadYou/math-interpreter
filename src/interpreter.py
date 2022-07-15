@@ -1,4 +1,4 @@
-from values import Number
+from src.values import Number
 
 
 class Interpreter(object):

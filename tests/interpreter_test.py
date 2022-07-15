@@ -42,6 +42,22 @@ class TestInterpreter(unittest.TestCase):
         value = self.get_value(tree)
         self.assertEqual(value, Number(-2360.0833333333335))
 
+    def test_expression_2(self):
+        # expression => (25 / 5 + 5) / (5 * 2)
+        tree = DivideNode(
+            AddNode(
+                DivideNode(
+                    NumberNode(25), NumberNode(5)
+                ),
+                NumberNode(5)
+            ),
+            MultiplyNode(
+                NumberNode(5), NumberNode(2)
+            )
+        )
+        value = self.get_value(tree)
+        self.assertEqual(value, Number(1.0))
+
     @staticmethod
     def get_value(node):
         return Interpreter().visit(node)
